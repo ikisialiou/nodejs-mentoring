@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-mentoring",
+  "version": "1.0.0",
+  "description": "Nodejs mentoring task",
+  "main": "app.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --watch --transpileOnly app.ts",
+    "prod": "tsc && node ./build/app.js",
+    "lint": "eslint app/**/*.ts",
+    "lint:fix": "npm run lint --fix",
+    "test": "mocha -r ts-node/register app/**/*.test.ts"
+  },
+  "author": "Ivan Kisialiou",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "13.1.0",
+    "dotenv": "8.2.0",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.7.2"
+  },
+  "devDependencies": {
+    "@types/chai": "4.2.7",
+    "@types/mocha": "5.2.7",
+    "@typescript-eslint/eslint-plugin": "2.11.0",
+    "@typescript-eslint/parser": "2.11.0",
+    "chai": "4.2.0",
+    "eslint": "6.7.2",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.7.0",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-prettier": "3.1.1",
+    "mocha": "6.2.2",
+    "prettier": "1.19.1"
+  }
+}
