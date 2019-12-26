@@ -1,5 +1,5 @@
 import http from 'http';
-import { Logger } from '../services/logger/Logger';
+import { Logger } from './services/logger/Logger';
 
 interface AppInterface {
   start: (port: number, host: string) => void;

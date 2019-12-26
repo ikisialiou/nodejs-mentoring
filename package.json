@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --watch --transpileOnly app.ts",
-    "prod": "tsc && node ./build/app.js",
+    "start": "tsc && node ./build/app.js",
     "lint": "eslint app/**/*.ts",
     "lint:fix": "npm run lint --fix",
     "test": "mocha -r ts-node/register app/**/*.test.ts"
