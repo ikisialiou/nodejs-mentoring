@@ -1,30 +1,38 @@
-import http from 'http';
+import express, { Application, Router } from 'express';
 import { Logger } from './services/logger/Logger';
+import { RouterProps } from './services/router';
+import { BooksController } from './modules/books/BoksController';
 
 interface AppInterface {
   start: (port: number, host: string) => void;
 }
 
 class App implements AppInterface {
-  private app: http.Server;
+  private app: Application;
+  private router: Router;
   private logger: Logger;
 
   constructor() {
     this.logger = Logger.getInstance();
-    this.app = http.createServer(
-      (req: http.IncomingMessage, res: http.ServerResponse) => {
-        this.logger.setRequestInfo(req.method || '', req.url || '');
-        this.logger.info('Getting some info');
-        res.write('Aue');
-        res.end();
-      }
-    );
+    this.app = express();
+    this.router = express.Router();
+    this.initRoutes();
   }
 
   start(port: number, host: string): void {
     this.app.listen(port, () =>
       this.logger.info(`Server is running on http://${host}:${port}`)
     );
+  }
+
+  private initRoutes(): void {
+    const booksController = new BooksController();
+    const routes = Reflect.get(booksController, 'routes');
+    routes.forEach((route: RouterProps) => {
+      this.router[route.method](route.path, route.action);
+    });
+
+    this.app.use('/api', this.router);
   }
 }
 
