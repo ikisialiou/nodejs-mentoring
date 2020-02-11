@@ -1,5 +1,8 @@
-import express from 'express';
 import { defaultController } from './DefaultController';
+import { Router } from 'express';
 
-export const defaultRouter = express();
-defaultRouter.get('/', defaultController.defaultRouter);
+export const defaultRouter = (router: Router): Router => {
+  router.get('/', defaultController.defaultRouter);
+
+  return router;
+};

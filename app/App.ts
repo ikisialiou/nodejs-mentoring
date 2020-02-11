@@ -1,5 +1,11 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
-import { Logger } from './services/logger/Logger';
+import express, {
+  Application,
+  Request,
+  Response,
+  NextFunction,
+  Router,
+} from 'express';
+import { Logger } from './logger/Logger';
 import { router } from './modules/Router';
 
 interface AppInterface {
@@ -9,10 +15,12 @@ interface AppInterface {
 class App implements AppInterface {
   private app: Application;
   private logger: Logger;
+  private router: Router;
 
   constructor() {
     this.logger = Logger.getInstance();
     this.app = express();
+    this.router = Router();
   }
 
   start(port: number, host: string): void {
@@ -33,7 +41,7 @@ class App implements AppInterface {
   }
 
   private initRouter(): void {
-    this.app.use('/', router);
+    this.app.use('/', router(this.router));
   }
 }
 
