@@ -8,11 +8,11 @@ class DefaultController {
     this.defaultService = new DefaultService();
   }
 
-  defaultRouter(req: Request, res: Response, next: NextFunction): void {
+  defaultRouter = (req: Request, res: Response, next: NextFunction): void => {
     const response = this.defaultService.defaultAction();
 
     res.send(response);
-  }
+  };
 }
 
 export const defaultController = new DefaultController();

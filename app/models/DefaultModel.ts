@@ -1,13 +1,13 @@
 import { Model } from 'sequelize';
 
-export class MovieModel extends Model {
+export class DefaultModel extends Model {
   public id!: number;
   public name!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  static init(sequelize, DataTypes): Function {
+  static init(sequelize, DataTypes): Model<DefaultModel> {
     return super.init(
       {
         id: {
@@ -26,7 +26,7 @@ export class MovieModel extends Model {
       },
       {
         sequelize,
-        tableName: 'movies',
+        tableName: 'default',
       }
     );
   }
