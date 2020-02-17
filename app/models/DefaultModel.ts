@@ -15,10 +15,6 @@ export class DefaultModel extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        ownerId: {
-          type: DataTypes.INTEGER.UNSIGNED,
-          allowNull: false,
-        },
         name: {
           type: DataTypes.STRING(128),
           allowNull: false,
