@@ -12,4 +12,5 @@ export interface WinstonLoggerInterface extends winston.Logger {
 export interface LoggerInterface {
   setRequestInfo: (method: string, path: string) => void;
   error: (message: string, error: Error) => void;
+  info: (message: string) => void;
 }
