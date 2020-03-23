@@ -9,10 +9,6 @@ export class DefaultService {
   }
 
   async defaultAction(): Promise<DefaultModel> {
-    try {
-      return await this.defaultRepository.findAll();
-    } catch (error) {
-      console.log(error);
-    }
+    return await this.defaultRepository.findAll();
   }
 }

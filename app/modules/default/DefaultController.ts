@@ -8,10 +8,21 @@ class DefaultController {
     this.defaultService = new DefaultService();
   }
 
-  defaultRouter = (req: Request, res: Response, next: NextFunction): void => {
-    const response = this.defaultService.defaultAction();
+  defaultRouter = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const response = await this.defaultService.defaultAction();
 
-    res.send(response);
+      res.send(response);
+    } catch (err) {
+      res.send({
+        code: '322',
+        message: err.message,
+      });
+    }
   };
 }
 
